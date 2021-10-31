@@ -10,7 +10,7 @@ export class UsersController {
 
   @Post()
   add(@Body() user: Users): Observable<Users>{
-      console.log(user)
+    
       return this.UsersService.add(user)
   }
 
