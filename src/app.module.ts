@@ -16,7 +16,7 @@ import { WorkersModule } from './workers/workers.module';
       synchronize: true,
       extra: {
         ssl: true
-      },
+      }
     }),
     UsersModule,
     WorkersModule
