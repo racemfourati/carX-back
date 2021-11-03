@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { WorkersModule } from './workers/workers.module';
 
-import { PaymentModule } from './payment/payment.module';
+
 
 
 @Module({
@@ -19,13 +19,12 @@ import { PaymentModule } from './payment/payment.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-      // extra: {
-      //   ssl: true
-      // }
+      extra: {
+        ssl: true
+      }
     }),
     UsersModule,
-    WorkersModule,
-    PaymentModule
+    WorkersModule
   ],
   controllers: [AppController],
   providers: [AppService],
