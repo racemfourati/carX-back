@@ -5,6 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { WorkersModule } from './workers/workers.module';
+import PhoneController from './auth/phone/phone.controller';
+import { PhoneModule } from './auth/phone/phone.module';
+import { PhoneService } from './auth/phone/phone.service';
+
 
 @Module({
   imports: [
@@ -14,14 +18,17 @@ import { WorkersModule } from './workers/workers.module';
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true,
-      extra: {
-        ssl: true
-      }
+      username:"postgres",
+      password: "Hovcu",
+      // extra: {
+      //   ssl: true
+      // }
     }),
     UsersModule,
-    WorkersModule
+    WorkersModule,
+    PhoneModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, PhoneController],
+  providers: [AppService, PhoneService],
 })
 export class AppModule {}
