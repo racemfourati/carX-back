@@ -8,6 +8,8 @@ import { WorkersModule } from './workers/workers.module';
 import PhoneController from './auth/phone/phone.controller';
 import { PhoneModule } from './auth/phone/phone.module';
 import { PhoneService } from './auth/phone/phone.service';
+import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
+// import { Cloudinary } from './image/cloudinary/cloudinary.Provider';
 
 
 @Module({
@@ -18,17 +20,18 @@ import { PhoneService } from './auth/phone/phone.service';
       url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true,
-      username:"postgres",
-      password: "Hovcu",
-      // extra: {
-      //   ssl: true
-      // }
+    
+      extra: {
+        ssl: true
+      }
     }),
     UsersModule,
     WorkersModule,
-    PhoneModule
+    PhoneModule,
+    CloudinaryModule
   ],
   controllers: [AppController, PhoneController],
   providers: [AppService, PhoneService],
+  
 })
 export class AppModule {}
