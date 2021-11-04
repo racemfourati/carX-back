@@ -9,12 +9,17 @@ import { ReviewsModule } from './reviews/reviews.module';
 
 
 
+
+
+
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal:true}),
+    ConfigModule.forRoot({isGlobal:true},
+                                       
+      ),
     TypeOrmModule.forRoot({
       type: "postgres",
-      url: process.env.DATABASE_URL,
+      url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
      
