@@ -5,23 +5,35 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { WorkersModule } from './workers/workers.module';
+import { ReviewsModule } from './reviews/reviews.module';
+
+
+
+
+
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal:true}),
+    ConfigModule.forRoot({isGlobal:true},
+                                       
+      ),
     TypeOrmModule.forRoot({
       type: "postgres",
-      url: process.env.DATABASE_URL,
+      url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
+     
       extra: {
         ssl: true
       }
     }),
     UsersModule,
-    WorkersModule
+    WorkersModule,
+    ReviewsModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],
+   
 })
 export class AppModule {}
