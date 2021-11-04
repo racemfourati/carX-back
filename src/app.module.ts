@@ -5,6 +5,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { WorkersModule } from './workers/workers.module';
+import { ReviewsModule } from './reviews/reviews.module';
+
+
 
 
 
@@ -19,14 +22,18 @@ import { WorkersModule } from './workers/workers.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
+     
       extra: {
         ssl: true
       }
     }),
     UsersModule,
-    WorkersModule
+    WorkersModule,
+    ReviewsModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],
+   
 })
 export class AppModule {}
