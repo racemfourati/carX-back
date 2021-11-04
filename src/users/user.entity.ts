@@ -13,7 +13,7 @@ export class userEntity {
 
     @Column()
     phone: number;
-
+  
     @Column()
     localisation: string;
 
