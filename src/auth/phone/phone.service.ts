@@ -22,10 +22,12 @@ export class PhoneService {
     }
     async verification(TARGET_PHONE_VERIFICATION:string) {
         try { 
+          console.log(typeof this.check)
+          console.log(typeof TARGET_PHONE_VERIFICATION)
           if(parseInt(TARGET_PHONE_VERIFICATION)!== this.check){
            return false
             
-          }else if (parseInt(TARGET_PHONE_VERIFICATION)=== this.check){
+          }else if (parseInt(TARGET_PHONE_VERIFICATION)== this.check){
             setTimeout(()=>{
               this.check=null
             },10000)
