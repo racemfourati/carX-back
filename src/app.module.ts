@@ -9,6 +9,12 @@ import PhoneController from './auth/phone/phone.controller';
 import { PhoneModule } from './auth/phone/phone.module';
 import { PhoneService } from './auth/phone/phone.service';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
+// import { Cloudinary } from './image/cloudinary/cloudinary.Provider';
+import { ReviewsModule } from './reviews/reviews.module';
+
+
+
+
 
 
 @Module({
@@ -22,6 +28,7 @@ import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
       autoLoadEntities: true,
       synchronize: true,
     
+     
       extra: {
         ssl: true
       }
@@ -29,10 +36,15 @@ import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
     UsersModule,
     WorkersModule,
     PhoneModule,
-    CloudinaryModule
+    CloudinaryModule,
+    ReviewsModule,
   ],
   controllers: [AppController, PhoneController],
   providers: [AppService, PhoneService],
   
+    
+    
+  
+   
 })
 export class AppModule {}
