@@ -3,7 +3,8 @@ export interface Users{
     name:string,
     email:string,
     phone: number,
-   
     localisation: string,
+    photo?:string,
     createdAt?:Date
+    
 }
