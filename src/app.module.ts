@@ -9,9 +9,9 @@ import PhoneController from './auth/phone/phone.controller';
 import { PhoneModule } from './auth/phone/phone.module';
 import { PhoneService } from './auth/phone/phone.service';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
-// import { Cloudinary } from './image/cloudinary/cloudinary.Provider';
 import { ReviewsModule } from './reviews/reviews.module';
-import {RequestModule} from './request/request.module'
+import { RequestModule } from './request/request.module';
+import { AdminModule } from './admin/admin.module';
 
 
 
@@ -27,8 +27,9 @@ import {RequestModule} from './request/request.module'
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-      username:"postgres",
-      password:"Hovcu"
+      username:'postgres',
+      password:"Hovcu",
+    
      
       // extra: {
       //   ssl: true
@@ -39,7 +40,8 @@ import {RequestModule} from './request/request.module'
     PhoneModule,
     CloudinaryModule,
     ReviewsModule,
-    RequestModule
+    RequestModule,
+    AdminModule
   ],
   controllers: [AppController, PhoneController],
   providers: [AppService, PhoneService],

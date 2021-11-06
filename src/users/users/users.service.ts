@@ -37,15 +37,16 @@ export class UsersService {
             }
        
          }
-         async updateUser(user1:Users){
-             console.log(typeof user1.photo)
+         async updateUser(user:Users){
+             
+             console.log(user.id)
             return from (this.userRepository.update({
-                id:user1.id,
+                id:user.id,
              },{
-               name:user1.name,
-               email:user1.email,
-               phone:user1.phone, 
-               photo:user1.photo
+               name:user.name,
+               email:user.email,
+               phone:user.phone, 
+              
 
             }))
 

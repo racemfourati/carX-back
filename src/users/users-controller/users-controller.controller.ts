@@ -27,18 +27,26 @@ export class UsersController {
  })
 }
 
-//   @Put('edit')
-//   @UseInterceptors(FileInterceptor('file'))
-//  async updateUser(@Body() user: Users ,@UploadedFile()file: Express.Multer.File ){
-//     console.log(file,"dazdazfiefozmngrmgnrz")
-// const photo =  await this.UsersService.UrlPhotoFromCloudinary(file)
-// console.log(photo.url)
-// const  {id,name,email,phone}=user
+  @Put('edit')
+  @UseInterceptors(FileInterceptor('file'))
+ updateUser(@UploadedFile()file: Express.Multer.File ,@Body() user: Users  ){
+    console.log(user, 'here ')
+
+  return this.UsersService.updateUser(user)
+
+this.UsersService.UrlPhotoFromCloudinary(file).then((res)=>{
+  return this.UsersService.updateUser(user,res.url).then((result)=>{
+      return result.subscribe(r=>{
+        console.log(r)
+      })
+  })
+})
+
 
 
 // const user1={id,name,email,phone,photo:photo.url}
-//     return this.UsersService.updateUser(user1)
-//   }
+   
+  }
 
   @Get()
   findAll(): Observable<Users[]>{
