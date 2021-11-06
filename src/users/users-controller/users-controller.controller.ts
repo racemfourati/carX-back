@@ -1,12 +1,9 @@
 import { Body, Controller, Post, Get,Put,Delete ,Res, UploadedFile,UseInterceptors,HttpStatus} from '@nestjs/common';
 import { Users } from '../user.interface';
 import { UsersService } from '../users/users.service';
-<<<<<<< HEAD
 import { Observable,Subscriber } from 'rxjs';
 import { Response } from 'express';
-=======
-import { Observable } from 'rxjs';
->>>>>>> 455eedce6f4e9d98df2cd64748babf484627de1a
+
 import { FileInterceptor } from '@nestjs/platform-express'
 
 @Controller('users')
@@ -21,27 +18,27 @@ export class UsersController {
     
        this.UsersService.add(user)
  respone.status(HttpStatus.CREATED)
- .json({respond:"NOT FOUND"})
+ .json({respond:"NOT FOUND",data:result})
     }else if (result.length > 0){
       respone.status(HttpStatus.FOUND)
-     .json({respond:"FOUND"})
+     .json({respond:"FOUND",data:result})
     }
 
  })
 }
 
-  @Put('edit')
-  @UseInterceptors(FileInterceptor('file'))
- async updateUser(@Body() user: Users ,@UploadedFile()file: Express.Multer.File ){
-    console.log(file,"dazdazfiefozmngrmgnrz")
-const photo =  await this.UsersService.UrlPhotoFromCloudinary(file)
-console.log(photo.url)
-const  {id,name,email,phone}=user
+//   @Put('edit')
+//   @UseInterceptors(FileInterceptor('file'))
+//  async updateUser(@Body() user: Users ,@UploadedFile()file: Express.Multer.File ){
+//     console.log(file,"dazdazfiefozmngrmgnrz")
+// const photo =  await this.UsersService.UrlPhotoFromCloudinary(file)
+// console.log(photo.url)
+// const  {id,name,email,phone}=user
 
 
-const user1={id,name,email,phone,photo:photo.url}
-    return this.UsersService.updateUser(user1)
-  }
+// const user1={id,name,email,phone,photo:photo.url}
+//     return this.UsersService.updateUser(user1)
+//   }
 
   @Get()
   findAll(): Observable<Users[]>{

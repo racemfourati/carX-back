@@ -9,9 +9,12 @@ import PhoneController from './auth/phone/phone.controller';
 import { PhoneModule } from './auth/phone/phone.module';
 import { PhoneService } from './auth/phone/phone.service';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
+// import { Cloudinary } from './image/cloudinary/cloudinary.Provider';
 import { ReviewsModule } from './reviews/reviews.module';
-import { RequestModule } from './request/request.module';
-import { AdminModule } from './admin/admin.module';
+
+
+
+
 
 
 @Module({
@@ -24,8 +27,8 @@ import { AdminModule } from './admin/admin.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-    
-    
+     
+     
       extra: {
         ssl: true
       }
@@ -35,11 +38,13 @@ import { AdminModule } from './admin/admin.module';
     PhoneModule,
     CloudinaryModule,
     ReviewsModule,
-    RequestModule,
-    AdminModule,
   ],
   controllers: [AppController, PhoneController],
   providers: [AppService, PhoneService],
   
+    
+    
+  
+   
 })
 export class AppModule {}
