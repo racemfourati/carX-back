@@ -5,6 +5,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { WorkersModule } from './workers/workers.module';
+import PhoneController from './auth/phone/phone.controller';
+import { PhoneModule } from './auth/phone/phone.module';
+import { PhoneService } from './auth/phone/phone.service';
+import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
+// import { Cloudinary } from './image/cloudinary/cloudinary.Provider';
 import { ReviewsModule } from './reviews/reviews.module';
 
 
@@ -23,17 +28,23 @@ import { ReviewsModule } from './reviews/reviews.module';
       autoLoadEntities: true,
       synchronize: true,
      
+     
       extra: {
         ssl: true
       }
     }),
     UsersModule,
     WorkersModule,
+    PhoneModule,
+    CloudinaryModule,
     ReviewsModule,
-    
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, PhoneController],
+  providers: [AppService, PhoneService],
+  
+    
+    
+  
    
 })
 export class AppModule {}
