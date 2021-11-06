@@ -28,7 +28,6 @@ import { ReviewsModule } from './reviews/reviews.module';
       autoLoadEntities: true,
       synchronize: true,
      
-     
       extra: {
         ssl: true
       }
