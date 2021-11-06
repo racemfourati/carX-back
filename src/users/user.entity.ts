@@ -26,10 +26,6 @@ export class userEntity {
     })
     photo: string;
     
-    @Column({
-        nullable: true,
-       })
-    localisation: string;
 
     @OneToMany(()=>RequestEntity , request => request.user)
     requests:RequestEntity[];
