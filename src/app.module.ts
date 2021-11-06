@@ -9,6 +9,9 @@ import PhoneController from './auth/phone/phone.controller';
 import { PhoneModule } from './auth/phone/phone.module';
 import { PhoneService } from './auth/phone/phone.service';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
+import { ReviewsModule } from './reviews/reviews.module';
+import { RequestModule } from './request/request.module';
+import { AdminModule } from './admin/admin.module';
 
 
 @Module({
@@ -21,15 +24,21 @@ import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
+      username:"postgres",
+      password:"ENETCOM2021",
+      database:"carx"
     
-      extra: {
-        ssl: true
-      }
+      // extra: {
+      //   ssl: true
+      // }
     }),
     UsersModule,
     WorkersModule,
     PhoneModule,
-    CloudinaryModule
+    CloudinaryModule,
+    ReviewsModule,
+    RequestModule,
+    AdminModule,
   ],
   controllers: [AppController, PhoneController],
   providers: [AppService, PhoneService],
