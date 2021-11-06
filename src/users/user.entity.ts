@@ -25,10 +25,6 @@ export class userEntity {
     })
     photo: string;
     
-    @Column({
-        nullable: true,
-       })
-    localisation: string;
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
     createdAts: Date  
