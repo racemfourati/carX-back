@@ -1,9 +1,14 @@
 import { Body, Controller, Post, Get,Put,Delete ,Res, UploadedFile,UseInterceptors,HttpStatus} from '@nestjs/common';
 import { Users } from '../user.interface';
 import { UsersService } from '../users/users.service';
+<<<<<<< HEAD
 import { Observable,Subscriber } from 'rxjs';
 import { Response } from 'express';
+=======
+import { Observable } from 'rxjs';
+>>>>>>> 455eedce6f4e9d98df2cd64748babf484627de1a
 import { FileInterceptor } from '@nestjs/platform-express'
+
 @Controller('users')
 export class UsersController {
 

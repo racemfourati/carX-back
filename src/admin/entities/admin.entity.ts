@@ -1,8 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn , OneToMany } from "typeorm";
-import { RequestEntity } from "src/request/entities/request.entity";
 
+import { Column, Entity, PrimaryGeneratedColumn , OneToMany } from "typeorm";
 @Entity()
-export class userEntity {
+export class AdminEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -19,16 +18,11 @@ export class userEntity {
 
     @Column({
         nullable: true,
+        unique: true,
        })
-    phone: number;
-    @Column({
-     nullable: true,
-    })
-    photo: string;
-    
+    password:string;
 
-    @OneToMany(()=>RequestEntity , request => request.user)
-    requests:RequestEntity[];
+    
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
     createdAts: Date  
