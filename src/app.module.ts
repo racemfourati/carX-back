@@ -11,7 +11,7 @@ import { PhoneService } from './auth/phone/phone.service';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
 // import { Cloudinary } from './image/cloudinary/cloudinary.Provider';
 import { ReviewsModule } from './reviews/reviews.module';
-
+import {RequestModule} from './request/request.module'
 
 
 
@@ -27,17 +27,19 @@ import { ReviewsModule } from './reviews/reviews.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
+      username:"postgres",
+      password:"Hovcu"
      
-     
-      extra: {
-        ssl: true
-      }
+      // extra: {
+      //   ssl: true
+      // }
     }),
     UsersModule,
     WorkersModule,
     PhoneModule,
     CloudinaryModule,
     ReviewsModule,
+    RequestModule
   ],
   controllers: [AppController, PhoneController],
   providers: [AppService, PhoneService],
