@@ -2,8 +2,8 @@ import { Body, Controller, Post, Get,Put,Delete ,Res, UploadedFile,UseIntercepto
 import { Users } from '../user.interface';
 import { UsersService } from '../users/users.service';
 import { Observable } from 'rxjs';
-import { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express'
+
 @Controller('users')
 export class UsersController {
 

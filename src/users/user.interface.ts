@@ -1,3 +1,5 @@
+import { Request } from '../request/request.interface'
+
 export interface Users{
     id: number,
     name:string,
@@ -5,6 +7,7 @@ export interface Users{
     phone: number,
     localisation: string,
     photo?:string,
+    requests:Request[],
     createdAt?:Date
     
 }

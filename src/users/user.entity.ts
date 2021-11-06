@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn , OneToMany } from "typeorm";
+import { RequestEntity } from "src/request/entities/request.entity";
 
 @Entity()
 export class userEntity {
@@ -29,6 +30,9 @@ export class userEntity {
         nullable: true,
        })
     localisation: string;
+
+    @OneToMany(()=>RequestEntity , request => request.user)
+    requests:RequestEntity[];
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
     createdAts: Date  
