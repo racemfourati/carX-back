@@ -27,8 +27,7 @@ import { AdminModule } from './admin/admin.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-    
-    
+     
      
      
       extra: {
