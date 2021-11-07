@@ -16,24 +16,24 @@ export default class PhoneController {
     
         @Get("send/:id")
          sendNumber(@Param() params):any {
-            console.log("here")
+           
                return this.phoneService.sendSMS(params.id)
         }
         @Post("verif/:id")
       
-         async   VerifNumber(@Res() response:Response, @Param('id') id:string):Promise<any> {
-               let bool =await  this.phoneService.verification(id)
+         async   VerifNumber(@Res() response:Response, @Param() params):Promise<any> {
+               let bool =await  this.phoneService.verification(params.id)
 
                
                if (bool==false){
                response
                .status(HttpStatus.EXPECTATION_FAILED)
-               .send();
+               .json({response:"WRONG_CODE"});
 
             }else{
                response.
                status(HttpStatus.ACCEPTED)
-               .send("done");
+               .json({response:"RIGHT_CODE"});
             }
             }
       
