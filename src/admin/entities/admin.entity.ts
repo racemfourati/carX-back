@@ -5,21 +5,13 @@ export class AdminEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({
-        nullable: true,
-       })
+    @Column({ nullable: true,})
     name:string;
 
-    @Column({
-        nullable: true,
-        unique: true,
-       })
+    @Column({unique: true})
     email:string;
 
-    @Column({
-        nullable: true,
-        unique: true,
-       })
+    @Column()
     password:string;
 
     

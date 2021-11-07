@@ -5,10 +5,7 @@ export interface Users{
     name:string,
     email:string,
     phone: number,
-  
     photo:string,
-
-  
     requests:Request[],
     createdAt?:Date
     
