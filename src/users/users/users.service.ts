@@ -5,15 +5,47 @@ import { Repository, getRepository, createQueryBuilder, getConnection } from 'ty
 import { Users } from '../user.interface';
 import { from, Observable } from 'rxjs';
 import { CloudinaryService } from '../../image/cloudinary/cloudinary.service';
+require('dotenv').config();
+import { InjectTwilio, TwilioClient } from 'nestjs-twilio';
+import { throwError } from 'rxjs';
 @Injectable()
 export class UsersService {
+   accountSid = process.env.TWILIO_ACCOUNT_SID;
+ authToken = process.env.TWILIO_AUTH_TOKEN;
     constructor(
         @InjectRepository(userEntity)
         private userRepository: Repository<userEntity>
-        , private cloudinary: CloudinaryService
-    ) { }
+        , private cloudinary: CloudinaryService,
+      
+    ) {}
 
+        getUerWithId(user:Users): Observable<userEntity[]>{
+            return from(this.userRepository.find({
+                where: [
+                    { id: user.id }
+                ]
+            })) 
+        }
+        getUserWithPhoneNumber(user:Users): Observable<userEntity[]>{
+            return from(this.userRepository.find({
+                where: [
+                    { phone: user.phone }
+                ]
+            }))        
+        }
+    
 
+     sendSms (phone, message:any) {
+        const client = require('twilio')(this.accountSid, this.authToken);
+        client.messages
+          .create({
+             body: message,
+             from: process.env.TWILIO_PHONE_NUMBER,
+             to: phone
+           })
+          .then(message => console.log(message.sid));
+      }
+    
     getOne(user: Users): Observable<userEntity[]> {
 
 
