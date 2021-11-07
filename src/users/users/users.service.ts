@@ -37,29 +37,33 @@ export class UsersService {
         }
 
     }
-    // async updateUser(user1: Users) {
-    //     console.log(typeof user1.photo)
-    //     return from(this.userRepository.update({
-    //         id: user1.id,
-    //     }, {
-    //         name: user1.name,
-    //         email: user1.email,
-    //         phone: user1.phone,
-    //         photo: user1.photo
+    async updateUser(user1: Users) {
+      
+        return from(this.userRepository.update({
+            id: user1.id,
+        }, {
+            name: user1.name,
+            email: user1.email,
+            phone: user1.phone,
+            photo: user1.photo
 
-    //     }))
-
-
-    // }
+        }))
 
 
-    // async UrlPhotoFromCloudinary(file: Express.Multer.File) {
-    //     console.log(file)
-    //     const url = await this.cloudinary.uploadImage(file)
-    //     return url;
-    // }
+    }
+
+
+    async uploadImageToCloudinary(file: Express.Multer.File) {
+        console.log(file)
+        const url = await this.cloudinary.uploadImage(file)
+        return url;
+    }
     findAll(): Observable<Users[]> {
         return from(this.userRepository.find())
     }
+    updateImage(photo:string,id:any){
+        console.log(id)
+        return  this.userRepository.update(id, { photo: photo })
 
+    }
 }
