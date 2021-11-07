@@ -13,7 +13,7 @@ export class userEntity {
 
     @Column({
         nullable: true,
-       
+        unique: true,
        })
     email:string;
 
