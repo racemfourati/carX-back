@@ -29,6 +29,7 @@ import { AdminModule } from './admin/admin.module';
       synchronize: true,
      
      
+     
       extra: {
         ssl: true
       }
