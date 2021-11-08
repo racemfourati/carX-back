@@ -5,9 +5,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { WorkersModule } from './workers/workers.module';
-import PhoneController from './auth/phone/phone.controller';
-import { PhoneModule } from './auth/phone/phone.module';
-import { PhoneService } from './auth/phone/phone.service';
 import { CloudinaryModule } from './image/cloudinary/cloudinary.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { RequestModule } from './request/request.module';
@@ -27,21 +24,20 @@ import { AdminModule } from './admin/admin.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-      
+     
       extra: {
         ssl: true
       }
     }),
     UsersModule,
     WorkersModule,
-    PhoneModule,
     CloudinaryModule,
     ReviewsModule,
     RequestModule,
     AdminModule
   ],
-  controllers: [AppController, PhoneController],
-  providers: [AppService, PhoneService],
+  controllers: [AppController],
+  providers: [AppService]
   
     
     
