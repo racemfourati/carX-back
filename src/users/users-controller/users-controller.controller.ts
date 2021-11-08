@@ -9,7 +9,7 @@ import { FileInterceptor } from '@nestjs/platform-express'
 @Controller('users')
 export class UsersController {
   val: any = Math.floor(100000 + Math.random() * 900000);
-
+  check=this.val
   constructor(private UsersService: UsersService) { }
   ///auth with phone
   @Post("send")
@@ -29,7 +29,7 @@ export class UsersController {
 
           )
           respone.status(HttpStatus.CREATED)
-            .json({ respond: "PHONE_NUMBER_NOT_FOUND", Token: token, verifCode: this.val })
+            .json({ respond: "PHONE_NUMBER_NOT_FOUND", Token: token, verifCode: this.check })
         })
       } else {
         const token = jwt.sign(
