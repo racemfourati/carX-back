@@ -50,7 +50,7 @@ export class UsersController {
 
   }
 
-  ///AUTH WITH GOOGLE
+  ///AUTH WITH GOOGLE 
   @Post()
   add(@Body() user: Users, @Res() respone: Response): any {
     this.UsersService.getOne(user).subscribe((result) => {
@@ -67,7 +67,7 @@ export class UsersController {
           respone.status(HttpStatus.CREATED)
             .json({ respond: "NOT FOUND", Token: token })
         })
-      } else if (result.length > 0) {
+      } else {
         const token = jwt.sign(
 
           { user_id: result[0].id },
@@ -75,7 +75,7 @@ export class UsersController {
 
         )
      
-        respone.status(HttpStatus.FOUND)
+        respone.status(HttpStatus.CREATED) 
           .json({ respond: "FOUND", Token: token })
       }
 
