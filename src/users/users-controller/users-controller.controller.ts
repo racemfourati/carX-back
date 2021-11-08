@@ -15,10 +15,10 @@ export class UsersController {
   @Post("send")
   send(@Body() user: Users, @Res() respone: Response) {
     this.UsersService.getUserWithPhoneNumber(user).subscribe((result) => {
-      console.log(result)
+     
       if (result.length == 0) {
         this.UsersService.add(user).then((result_) => {
-          console.log(result_)
+         
           const welcomeMessage = `Welcome carX! Your verification code is ${this.val}`
           let number = `+216${result_.phone}`
           this.UsersService.sendSms(number, welcomeMessage)
@@ -74,7 +74,7 @@ export class UsersController {
           process.env.TOKEN_KEY
 
         )
-        console.log(token)
+     
         respone.status(HttpStatus.FOUND)
           .json({ respond: "FOUND", Token: token })
       }
@@ -83,10 +83,10 @@ export class UsersController {
   }
   //update just user 
   @Put('edit')
-
-  async updateUser(@Body() user: Users) {
+ async updateUser(@Body() user: Users, @Res() respone: Response) {
     return this.UsersService.updateUser(user).then((result) => {
-      console.log(result)
+      respone.status(HttpStatus.CREATED)
+      .json({response:"UPDATED"})
     })
   }
   //get spesific user with id 
@@ -113,13 +113,9 @@ export class UsersController {
   @Post('upload/:id')
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(@UploadedFile() file: Express.Multer.File, @Param() params) {
-    console.log(params.id)
-    console.log(file)
+   
     const photo = await this.UsersService.uploadImageToCloudinary(file);
-    console.log(photo.url)
     return this.UsersService.updateImage(photo.url, params.id)
 
   }
-
-
 }
