@@ -90,9 +90,9 @@ export class UsersController {
     })
   }
   //get spesific user with id 
-  @Get("finduser")
-  findUser(@Body() user: Users, @Res() respone: Response) {
-    this.UsersService.getUerWithId(user).subscribe((result) => {
+  @Get("finduser/:id")
+  findUser(@Param() pramas: Users, @Res() respone: Response) {
+    this.UsersService.getUerWithId(pramas).subscribe((result) => {
 
       const token = jwt.sign(
         { user_id: result[0].id, name: result[0].name, email: result[0].email, phone: result[0].phone, photo: result[0].photo },
