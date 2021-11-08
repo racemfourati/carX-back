@@ -29,12 +29,7 @@ export class UsersController {
 
     @Put('edit')
    
-   async updateUser(@Body() user: Users  ){
-    
-  
-  
-      return this.UsersService.updateUser(user)
-    }
+   async updateUser(@Body() user: Users  ){ return this.UsersService.updateUser(user) }
 
   @Get()
   findAll(): Observable<Users[]> {
