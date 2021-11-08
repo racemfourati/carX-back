@@ -16,7 +16,11 @@ export class workerEntity {
     phone: number;
 
     @Column()
-    localisation: string;
+    positionx:number;
+
+    @Column()
+    positiony:number;
+
     
     @OneToMany(()=>RequestEntity , request => request.worker)
     requests:RequestEntity[];
