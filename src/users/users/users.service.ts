@@ -38,6 +38,7 @@ export class UsersService {
 
     sendSms(phone, message: any) {
         const client = require('twilio')(this.accountSid, this.authToken);
+        console.log(phone)
         client.messages
             .create({
                 body: message,
