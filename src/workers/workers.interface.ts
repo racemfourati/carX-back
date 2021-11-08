@@ -5,8 +5,8 @@ export interface Worker{
     name:string,
     email:string,
     phone: number,
-    positionx:number,
-    positiony:number,
+    positionx:string,
+    positiony:string,
     requests:Request[],
     createdAt?:Date
 }

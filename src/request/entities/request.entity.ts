@@ -13,10 +13,10 @@ export class RequestEntity  {
     service:string;
 
     @Column()
-    positionx:number;
+    positionx:string;
 
     @Column()
-    positiony:number;
+    positiony:string;
 
     @Column()
     typeOfCar: string;
@@ -33,7 +33,7 @@ export class RequestEntity  {
     @Column({default:null})
     paymentDate:Date;
 
-    @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true , nullable:true})
+    @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
     worker:workerEntity
 
 
