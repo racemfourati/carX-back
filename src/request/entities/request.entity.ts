@@ -9,14 +9,14 @@ export class RequestEntity  {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({nullable:true})
+    @Column({default:null})
     service:string;
 
     @Column()
-    positionx:number;
+    positionx:string;
 
     @Column()
-    positiony:number;
+    positiony:string;
 
     @Column()
     typeOfCar: string;
@@ -24,13 +24,13 @@ export class RequestEntity  {
     @Column()
     typeOfWash: string;
 
-    @Column({nullable:true})
+    @Column({default:false})
     isPayed: boolean;
 
     @Column({nullable:true})
     Price: string;
 
-    @Column({nullable:true})
+    @Column({default:null})
     paymentDate:Date;
 
     @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
