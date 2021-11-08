@@ -13,5 +13,6 @@ export interface Request{
     Price: string,
     paymentDate:Date,
     worker:Worker,
+    isServed:boolean,
     createdAt?:Date
 }
