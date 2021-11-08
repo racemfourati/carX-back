@@ -16,10 +16,10 @@ export class workerEntity {
     phone: number;
 
     @Column()
-    positionx:number;
+    positionx:string;
 
     @Column()
-    positiony:number;
+    positiony:string;
 
     
     @OneToMany(()=>RequestEntity , request => request.worker)
