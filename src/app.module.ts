@@ -21,7 +21,9 @@ import { AdminModule } from './admin/admin.module';
       type: "postgres",
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
-      synchronize: true,  
+      synchronize: true,
+     
+       
       extra: {
         ssl: true
       }
