@@ -55,24 +55,22 @@ export class UsersController {
   add(@Body() user: Users, @Res() respone: Response): any {
     this.UsersService.getOne(user).subscribe((result) => {
       if (result.length == 0) {
-
         this.UsersService.add(user).then((result) => {
 
           const token = jwt.sign(
-
             { user_id: result.id },
             process.env.TOKEN_KEY
-
           )
+
           respone.status(HttpStatus.CREATED)
             .json({ respond: "NOT FOUND", Token: token })
         })
-      } else if (result.length > 0) {
+      } else  {
+        console.log(result[0].id)
+        
         const token = jwt.sign(
-
           { user_id: result[0].id },
           process.env.TOKEN_KEY
-
         )
      
         respone.status(HttpStatus.FOUND)
@@ -91,9 +89,9 @@ export class UsersController {
   }
   //get spesific user with id 
   @Get(":id")
-  findUser(@Param() pramas: Users, @Res() respone: Response) {
-    console.log(pramas.id)
-    this.UsersService.getUerWithId(pramas).subscribe((result) => {
+  findUser(@Param('id') id: string, @Res() respone: Response) {
+    console.log(typeof id)
+    this.UsersService.getUerWithId(id).subscribe((result) => {
         console.log(result[0].email)
       const token = jwt.sign(
         { user_id: result[0].id, name: result[0].name, email: result[0].email, phone: result[0].phone, photo: result[0].photo },

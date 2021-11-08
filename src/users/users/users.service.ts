@@ -19,11 +19,11 @@ export class UsersService {
 
     ) { }
 
-    getUerWithId(user: Users): Observable<userEntity[]> {
-        console.log(user.id,"from service")
+    getUerWithId(pramas: string): Observable<userEntity[]> {
+        console.log(typeof pramas,"from service")
         return from(this.userRepository.find({
             where: [
-                { id: user.id }
+                { id: pramas }
             ]
         }))
     }
