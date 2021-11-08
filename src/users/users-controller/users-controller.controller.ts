@@ -92,6 +92,10 @@ export class UsersController {
   //get spesific user with id 
   @Get("finduser")
   findUser(@Body() user: Users, @Res() respone: Response) {
+     if(user.id == null || typeof(user.id)!=='number'){
+       respone.status(HttpStatus.BAD_REQUEST)
+       return
+     }
     this.UsersService.getUerWithId(user).subscribe((result) => {
 
       const token = jwt.sign(
