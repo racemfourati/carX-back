@@ -20,13 +20,13 @@ export class UsersService {
     ) { }
 
     getUerWithId(pramas: string): Observable<userEntity[]> {
-        console.log(typeof pramas, "from service")
         return from(this.userRepository.find({
             where: [
                 { id: pramas }
             ]
         }))
     }
+    
     getUserWithPhoneNumber(user: Users): Observable<userEntity[]> {
         return from(this.userRepository.find({
             where: [
@@ -59,10 +59,6 @@ export class UsersService {
 
 
 
-    }
-
-    findOne(id: string): Observable<userEntity> {
-        return from(this.userRepository.findOne(id))
     }
 
     async add(user: Users) {
