@@ -8,5 +8,6 @@ export interface Worker{
     positionx:string,
     positiony:string,
     requests:Request[],
+    isAvailable:boolean,
     createdAt?:Date
 }
