@@ -22,10 +22,13 @@ import { AdminModule } from './admin/admin.module';
       url: process.env.DATABASE_URL ,
       autoLoadEntities: true,
       synchronize: true,
-     
-      extra: {
-        ssl: true
-      }
+      username:'postgres',
+      password:'ENETCOM2021',
+      database:'carx'
+       
+      // extra: {
+      //   ssl: true
+      // }
     }),
     UsersModule,
     WorkersModule,
