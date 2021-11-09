@@ -5,7 +5,7 @@ import { Observable, Subscriber } from 'rxjs';
 import { Response } from 'express';
 var jwt = require("jsonwebtoken")
 import { FileInterceptor } from '@nestjs/platform-express'
-import { array } from 'joi';
+
 
 @Controller('users')
 export class UsersController {
