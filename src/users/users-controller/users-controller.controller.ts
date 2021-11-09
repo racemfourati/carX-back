@@ -90,16 +90,9 @@ export class UsersController {
   //get spesific user with id 
   @Get(":id")
   findUser(@Param('id') id: string, @Res() respone: Response) {
-
     this.UsersService.getUerWithId(id).subscribe((result) => {
-      console.log(result)
-      const token = jwt.sign(
-        { user_id: result[0].id, name: result[0].name, email: result[0].email, phone: result[0].phone, photo: result[0].photo , requests:result[0].requests },
-        process.env.TOKEN_KEY
-      )
-
       respone.status(HttpStatus.CREATED)
-        .json({ respond: "FOUND", Token: token })
+        .json({ respond: "FOUND",data:result})
     })
 
   }
@@ -109,10 +102,7 @@ export class UsersController {
     return this.UsersService.findAll()
   }
 
-  @Get('one/:id')
-  test(@Param('id') id: string): Observable<Users> {
-    return this.UsersService.findOne(id)
-  }
+ 
 
   // update image 
   @Post('upload/:id')
