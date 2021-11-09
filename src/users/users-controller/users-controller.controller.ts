@@ -5,20 +5,29 @@ import { Observable, Subscriber } from 'rxjs';
 import { Response } from 'express';
 var jwt = require("jsonwebtoken")
 import { FileInterceptor } from '@nestjs/platform-express'
+import { array } from 'joi';
 
 @Controller('users')
 export class UsersController {
   val: any = Math.floor(100000 + Math.random() * 900000);
-  check=this.val
+  check=[...[this.val]]
+  
+  
   constructor(private UsersService: UsersService) { }
   ///auth with phone
-  @Post("send")
-  send(@Body() user: Users, @Res() respone: Response) {
-    this.UsersService.getUserWithPhoneNumber(user).subscribe((result) => {
-     
-      if (result.length == 0) {
-        this.UsersService.add(user).then((result_) => {
-         
+  @Post("send/:id")
+  send(@Param('id') phone: number, @Res() respone: Response) {
+    // get all users
+      console.log(phone)
+      
+    this.UsersService.getUserWithPhoneNumber(phone).subscribe((result) => {
+
+      
+      if (result.length === 0) {
+          const user:Users =  {id:0,name:"",email:null,phone:Number(phone),photo:"",requests:[]  } 
+        this.UsersService.add(user).subscribe((result_) => {
+          console.log(user)
+                 console.log(result_.phone,"aeae") 
           const welcomeMessage = `Welcome carX! Your verification code is ${this.val}`
           let number = `+216${result_.phone}`
           this.UsersService.sendSms(number, welcomeMessage)
@@ -31,8 +40,9 @@ export class UsersController {
           respone.status(HttpStatus.CREATED)
             .json({ respond: "PHONE_NUMBER_NOT_FOUND", Token: token, verifCode: this.check })
         })
-      } else {
+      } else if(result.length>0){
         const token = jwt.sign(
+        
 
           { user_id: result[0] },
           process.env.TOKEN_KEY
@@ -55,7 +65,7 @@ export class UsersController {
   add(@Body() user: Users, @Res() respone: Response): any {
     this.UsersService.getOne(user).subscribe((result) => {
       if (result.length == 0) {
-        this.UsersService.add(user).then((result) => {
+        this.UsersService.add(user).subscribe((result) => {
 
           const token = jwt.sign(
             { user_id: result.id },
@@ -66,7 +76,6 @@ export class UsersController {
             .json({ respond: "NOT FOUND", Token: token })
         })
       } else  {
-        console.log(result[0].id)
         
         const token = jwt.sign(
           { user_id: result[0].id },

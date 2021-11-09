@@ -17,7 +17,7 @@ export class UsersService {
         private userRepository: Repository<userEntity>
         , private cloudinary: CloudinaryService,
 
-    ) { }
+    ){}
 
     getUerWithId(pramas: string): Observable<userEntity[]> {
         console.log(typeof pramas,"from service")
@@ -27,10 +27,10 @@ export class UsersService {
             ]
         }))
     }
-    getUserWithPhoneNumber(user: Users): Observable<userEntity[]> {
+    getUserWithPhoneNumber(phone: number) {
         return from(this.userRepository.find({
             where: [
-                { phone: user.phone }
+                { phone: phone }
             ]
         }))
     }
@@ -60,15 +60,12 @@ export class UsersService {
 
 
     }
-    async add(user: Users) {
-
-        try {
-            const data = await this.userRepository.save(user)
-            return data;
-        }
-        catch (err) {
-
-        }
+     add(user: Users) {
+          
+     
+          return from( this.userRepository.save(user))
+          
+       
 
     }
     async updateUser(user1: Users) {
