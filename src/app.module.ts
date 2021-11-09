@@ -23,6 +23,7 @@ import { AdminModule } from './admin/admin.module';
       autoLoadEntities: true,
       synchronize: true,
      
+       
       extra: {
         ssl: true
       }
