@@ -20,7 +20,7 @@ export class UsersService {
     ) { }
 
     getUerWithId(pramas: string): Observable<userEntity[]> {
-        console.log(typeof pramas,"from service")
+        console.log(typeof pramas, "from service")
         return from(this.userRepository.find({
             where: [
                 { id: pramas }
@@ -60,6 +60,11 @@ export class UsersService {
 
 
     }
+
+    findOne(id: string): Observable<userEntity> {
+        return from(this.userRepository.findOne(id))
+    }
+
     async add(user: Users) {
 
         try {
@@ -88,7 +93,7 @@ export class UsersService {
 
 
     async uploadImageToCloudinary(file: Express.Multer.File) {
-     
+
         const url = await this.cloudinary.uploadImage(file)
         return url;
     }
@@ -96,7 +101,7 @@ export class UsersService {
         return from(this.userRepository.find())
     }
     updateImage(photo: string, id: any) {
-      
+
         return this.userRepository.update(id, { photo: photo })
 
     }

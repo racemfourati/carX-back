@@ -9,16 +9,16 @@ import { FileInterceptor } from '@nestjs/platform-express'
 @Controller('users')
 export class UsersController {
   val: any = Math.floor(100000 + Math.random() * 900000);
-  check=this.val
+  check = this.val
   constructor(private UsersService: UsersService) { }
   ///auth with phone
   @Post("send")
   send(@Body() user: Users, @Res() respone: Response) {
     this.UsersService.getUserWithPhoneNumber(user).subscribe((result) => {
-     
+
       if (result.length == 0) {
         this.UsersService.add(user).then((result_) => {
-         
+
           const welcomeMessage = `Welcome carX! Your verification code is ${this.val}`
           let number = `+216${result_.phone}`
           this.UsersService.sendSms(number, welcomeMessage)
@@ -65,15 +65,15 @@ export class UsersController {
           respone.status(HttpStatus.CREATED)
             .json({ respond: "NOT FOUND", Token: token })
         })
-      } else  {
+      } else {
         console.log(result[0].id)
-        
+
         const token = jwt.sign(
           { user_id: result[0].id },
           process.env.TOKEN_KEY
         )
-     
-        respone.status(HttpStatus.CREATED) 
+
+        respone.status(HttpStatus.CREATED)
           .json({ respond: "FOUND", Token: token })
       }
 
@@ -81,20 +81,20 @@ export class UsersController {
   }
   //update just user 
   @Put('edit')
- async updateUser(@Body() user: Users, @Res() respone: Response) {
+  async updateUser(@Body() user: Users, @Res() respone: Response) {
     return this.UsersService.updateUser(user).then((result) => {
       respone.status(HttpStatus.CREATED)
-      .json({response:"UPDATED"})
+        .json({ response: "UPDATED" })
     })
   }
   //get spesific user with id 
   @Get(":id")
   findUser(@Param('id') id: string, @Res() respone: Response) {
-  
+
     this.UsersService.getUerWithId(id).subscribe((result) => {
-       console.log(result)
+      console.log(result)
       const token = jwt.sign(
-        { user_id: result[0].id, name: result[0].name, email: result[0].email, phone: result[0].phone, photo: result[0].photo },
+        { user_id: result[0].id, name: result[0].name, email: result[0].email, phone: result[0].phone, photo: result[0].photo , requests:result[0].requests },
         process.env.TOKEN_KEY
       )
 
@@ -108,11 +108,17 @@ export class UsersController {
   findAll(): Observable<Users[]> {
     return this.UsersService.findAll()
   }
+
+  @Get('one/:id')
+  test(@Param('id') id: string): Observable<Users> {
+    return this.UsersService.findOne(id)
+  }
+
   // update image 
   @Post('upload/:id')
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(@UploadedFile() file: Express.Multer.File, @Param() params) {
-   
+
     const photo = await this.UsersService.uploadImageToCloudinary(file);
     return this.UsersService.updateImage(photo.url, params.id)
 
