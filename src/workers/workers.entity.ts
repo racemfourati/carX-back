@@ -21,6 +21,9 @@ export class workerEntity {
     @Column()
     positiony:string;
 
+    @Column({default:false})
+    isAvailable:boolean;
+
     
     @OneToMany(()=>RequestEntity , request => request.worker)
     requests:RequestEntity[];

@@ -9,7 +9,7 @@ import { FileInterceptor } from '@nestjs/platform-express'
 @Controller('users')
 export class UsersController {
   val: any = Math.floor(100000 + Math.random() * 900000);
-
+  check=this.val
   constructor(private UsersService: UsersService) { }
   ///auth with phone
   @Post("send")
@@ -29,7 +29,7 @@ export class UsersController {
 
           )
           respone.status(HttpStatus.CREATED)
-            .json({ respond: "PHONE_NUMBER_NOT_FOUND", Token: token, verifCode: this.val })
+            .json({ respond: "PHONE_NUMBER_NOT_FOUND", Token: token, verifCode: this.check })
         })
       } else {
         const token = jwt.sign(
@@ -50,7 +50,7 @@ export class UsersController {
 
   }
 
-  ///AUTH WITH GOOGLE
+  ///AUTH WITH GOOGLE 
   @Post()
   add(@Body() user: Users, @Res() respone: Response): any {
     this.UsersService.getOne(user).subscribe((result) => {
@@ -73,7 +73,7 @@ export class UsersController {
           process.env.TOKEN_KEY
         )
      
-        respone.status(HttpStatus.FOUND)
+        respone.status(HttpStatus.CREATED) 
           .json({ respond: "FOUND", Token: token })
       }
 
@@ -90,15 +90,15 @@ export class UsersController {
   //get spesific user with id 
   @Get(":id")
   findUser(@Param('id') id: string, @Res() respone: Response) {
-    console.log(typeof id)
+  
     this.UsersService.getUerWithId(id).subscribe((result) => {
-        console.log(result[0].email)
+       console.log(result)
       const token = jwt.sign(
         { user_id: result[0].id, name: result[0].name, email: result[0].email, phone: result[0].phone, photo: result[0].photo },
         process.env.TOKEN_KEY
       )
 
-      respone.status(HttpStatus.FOUND)
+      respone.status(HttpStatus.CREATED)
         .json({ respond: "FOUND", Token: token })
     })
 
