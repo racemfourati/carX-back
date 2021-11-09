@@ -35,11 +35,14 @@ export class RequestEntity  {
     @Column({default:false})
     isServed:boolean;
 
+    @Column({nullable:true})
+    duration:string;
+
     @ManyToOne(()=>workerEntity,worker=>worker.requests,{eager:true ,nullable:true})
     worker:workerEntity
 
 
-    @ManyToOne(()=>userEntity , user=>user.requests,{eager: true})
+    @ManyToOne(()=>userEntity , user=>user.requests)
     user: userEntity;
 
     @Column({type: "timestamp", default:()=> "CURRENT_TIMESTAMP"})
