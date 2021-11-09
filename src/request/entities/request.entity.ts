@@ -32,6 +32,8 @@ export class RequestEntity  {
 
     @Column({default:null})
     paymentDate:Date;
+    @Column({default:false})
+    isServed:boolean;
 
     @Column({nullable:true})
     duration:string;

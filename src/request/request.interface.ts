@@ -14,5 +14,6 @@ export interface Request{
     paymentDate:Date,
     duration:string,
     worker:Worker,
+    isServed:boolean,
     createdAt?:Date
 }
