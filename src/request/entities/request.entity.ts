@@ -36,6 +36,8 @@ export class RequestEntity  {
     @Column({default:false})
     isServed:boolean;
 
+    
+
     @Column({default:''})
     duration:string;
 
