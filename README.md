@@ -1,3 +1,5 @@
+This repo is part of the thesis project of RBK
+it's the back end part of the carx mobile app 
 # You need
 - NPM
 - Node.js
